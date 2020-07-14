@@ -125,7 +125,7 @@ To start and run the local development server,
   ```
   $ cd YOUR_PROJECT_DIRECTORY_PATH/
   $ virtualenv --no-site-packages env
-  $ source fyyur_env/bin/activate
+  $ source env/bin/activate
   ```
 
 2. Install the dependencies:
@@ -133,9 +133,14 @@ To start and run the local development server,
   $ pip install -r requirements.txt
   ```
 
+  *Note*: You may need additional dependencies.
+
+  - `pip install Flask-Migrate`
+  - `pip install psycopg2`
+
 3. Run the development server:
   ```
-  $ export FLASK_APP=myapp
+  $ export FLASK_APP=app.py
   $ export FLASK_ENV=development # enables debug mode
   $ python3 app.py
   ```
