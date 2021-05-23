@@ -36,7 +36,7 @@
 				<i class="fas fa-quote-left"></i> {{ venue.seeking_description }} <i class="fas fa-quote-right"></i>
 			</div>
 		</div>
-		{% else %}	
+		{% else %}
 		<p class="not-seeking">
 			<i class="fas fa-moon"></i> Not currently seeking talent
 		</p>
@@ -74,6 +74,37 @@
 		{% endfor %}
 	</div>
 </section>
+<section>
+    <a href='/venues/{{ venue.id }}/edit'><button class="btn btn-default btn-md">Edit Venue</button></a>
+    <button type="submit" onclick="deleteVenue(this)" data-id="{{ venue.id }}" class="btn btn-default btn-md"
+        style="width: 100px;">Delete Venue</button>
+</section>
+<script>
+    function deleteVenue(e) {
+        const venue_id = e.dataset.id;
+
+        // New AJAX request to server to GET edit page
+        const request_delete = new XMLHttpRequest();
+
+        const url = `/venues/${venue_id}/delete`;
+        request_delete.open('GET', url);    
+
+        // Callback on return
+        request_delete.onload = () => {
+            // Extract JSON data from request
+            const data = JSON.parse(request_delete.responseText);
+
+            // If delete was successful, redirect
+            if (data['deleted'] == true) {
+                window.location.href = data['url'];
+            }
+        }
+
+        // Actually send the request
+        request_delete.send( null );   // No data, url request
+        return false;
+
+    }
+</script>
 
 {% endblock %}
-

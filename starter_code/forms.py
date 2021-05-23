@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask_wtf import Form
 from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField
-from wtforms.validators import DataRequired, AnyOf, URL
+from wtforms.validators import DataRequired, AnyOf, URL, Optional
 
 class ShowForm(Form):
     artist_id = StringField(
@@ -88,6 +88,19 @@ class VenueForm(Form):
     image_link = StringField(
         'image_link'
     )
+    website = StringField(
+        'website', validators=[Optional(), URL()]
+    )
+    seeking_talent = SelectField(
+        'seeking_talent', validators=[DataRequired()],
+        choices=[
+            ('Yes', 'Yes'),
+            ('No', 'No')
+        ]
+    )
+    seeking_description = StringField(
+        'seeking_description', validators=[Optional()]
+    )
     genres = SelectMultipleField(
         # TODO implement enum restriction
         'genres', validators=[DataRequired()],
@@ -114,7 +127,7 @@ class VenueForm(Form):
         ]
     )
     facebook_link = StringField(
-        'facebook_link', validators=[URL()]
+        'facebook_link', validators=[Optional(), URL()]
     )
 
 class ArtistForm(Form):
@@ -187,6 +200,19 @@ class ArtistForm(Form):
     image_link = StringField(
         'image_link'
     )
+    website = StringField(
+        'website', validators=[Optional(), URL()]
+    )
+    seeking_venue = SelectField(
+        'seeking_venue', validators=[DataRequired()],
+        choices=[
+            ('Yes', 'Yes'),
+            ('No', 'No')
+        ]
+    )
+    seeking_description = StringField(
+        'seeking_description', validators=[Optional()]
+    )
     genres = SelectMultipleField(
         # TODO implement enum restriction
         'genres', validators=[DataRequired()],
@@ -213,8 +239,5 @@ class ArtistForm(Form):
         ]
     )
     facebook_link = StringField(
-        # TODO implement enum restriction
-        'facebook_link', validators=[URL()]
+        'facebook_link', validators=[Optional(), URL()]
     )
-
-# TODO IMPLEMENT NEW ARTIST FORM AND NEW SHOW FORM
