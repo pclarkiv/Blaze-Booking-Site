@@ -57,7 +57,7 @@ p.lead {
   box-shadow: none;
   border-bottom: none;
   padding-top: 10px;
-  background-color: white;
+  background-color: rgb(87, 86, 86);
 }
 .navbar-nav .search {
   margin-top: 6px;
