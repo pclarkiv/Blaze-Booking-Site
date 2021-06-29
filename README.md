@@ -7,4 +7,4 @@ Fyyur is a musical venue and artist booking site that facilitates the discovery 
 
 Your job is to build out the data models to power the API endpoints for the Fyyur site by connecting to a PostgreSQL database for storing, querying, and creating information about artists and venues on Fyyur.
 
-To start and run the local development 
+
